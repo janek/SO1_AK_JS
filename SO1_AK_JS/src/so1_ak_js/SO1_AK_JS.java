@@ -1,7 +1,6 @@
 /*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the temlate in the editor.
+ *Zadanie pierwsze kursu Systemy Operacyjne, 2014 PWr
+ * Aleksander Kolbuszewski, Janek Szynal  
  */
 
 package so1_ak_js;
