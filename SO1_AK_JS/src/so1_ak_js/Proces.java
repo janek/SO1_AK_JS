@@ -11,11 +11,9 @@ package so1_ak_js;
  */
 public class Proces {
     
-//       możliwa reprezentacja procesu: rekord 
-//       (numer, dł.fazy procesora, moment zgłoszenia się, czas oczekiwania /początkowo równy 0/...) 
-    int nrPorzadkowy;
-    int dlugoscFazy;
-    int momentZgloszenia;
+    int nrPorzadkowy = 0;
+    int dlugoscFazy = 0;
+    int momentZgloszenia = 0;
     int czasOczekiwania = 0;
     
     Proces(int dlugoscFazy, int momentZgloszenia){
