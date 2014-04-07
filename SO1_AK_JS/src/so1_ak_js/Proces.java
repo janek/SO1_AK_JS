@@ -13,13 +13,13 @@ public class Proces {
     
     int nrPorzadkowy = 0;
     int dlugoscFazy = 0;
-    int momentZgloszenia = 0;
+    int momentZgloszenia = 0;   //UWAGA: Czy nie zamienić na opóźnienie od ostatniego?
     int czasOczekiwania = 0;
     
-    Proces(int dlugoscFazy, int momentZgloszenia){
+    Proces(int nrPorzadkowy, int dlugoscFazy, int momentZgloszenia){
+        this.nrPorzadkowy = nrPorzadkowy;
         this.dlugoscFazy = dlugoscFazy;
         this.momentZgloszenia = momentZgloszenia;
-        this.czasOczekiwania = 0;
     }
     
 }
