@@ -23,6 +23,7 @@ public class Generator {
     i interpretuje kolejne linijki, 
     wywołujac odpowiednio metody dodajProces lub generujProcesy*/
     void scenariuszZPliku(String nazwa) throws FileNotFoundException{
+        System.out.println("wczytywanie z "+nazwa);
         Scanner odczyt = new Scanner(new File(nazwa));
         odczyt.nextLine();
         while(odczyt.hasNextLine()){
@@ -40,18 +41,18 @@ public class Generator {
     }//scenariuszZPliku
     
     /* tworzy nowy proces i dodaje do listy*/
-    void dodajProces(int dlugoscFazy, int momentZgloszenia){
-        procesy.add(new Proces(procesy.size(), dlugoscFazy, momentZgloszenia));
+    void dodajProces(int dlugoscFazy, int deltaZgloszenia){
+        procesy.add(new Proces(procesy.size(), dlugoscFazy, deltaZgloszenia));
     }
     
     /*generuje zadana ilosc procesow i dodaje do listy */
-    void generujProcesy(int liczbaProcesow, int maxDlugoscFazy, int maxMomentZgl) {//czy powinny byc inne parametry?
+    void generujProcesy(int liczbaProcesow, int maxDlugoscFazy, int maxDeltaZgl) {//czy powinny byc inne parametry?
         for (int i = 0; i<liczbaProcesow; i++){
             //stworz jeden proces
             Random rand = new Random(); 
             int dlFazy = rand.nextInt(maxDlugoscFazy)+1;
             Random rand2 = new Random(); 
-            int momZgl = rand2.nextInt(maxMomentZgl);
+            int momZgl = rand2.nextInt(maxDeltaZgl);
             dodajProces(dlFazy, momZgl);
         }
      
