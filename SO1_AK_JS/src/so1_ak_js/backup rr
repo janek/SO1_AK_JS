@@ -1,0 +1,76 @@
+public void RR(ArrayList<Proces> procesy, int kwantCzasu){
+        ArrayList<Proces> localProces = new ArrayList<>();
+        localProces = procesy;
+//          for (Proces p : localProces){
+//           p.wypisz();
+//           System.out.println("y");
+//          }
+
+        int obecnyCzas = 0;
+        boolean pozostalyNiewykonaneProcesy=true;
+        int nrOstatnioWykonywanego = 0;
+        LinkedList<Proces> gotoweProcesy = new LinkedList<Proces>();
+        
+        while (pozostalyNiewykonaneProcesy){ //dopóki pozostały niewykonane procesy
+
+            //dodaj do gotowychProcesów wszystkie gotowe procesy
+            
+            for (Proces p : procesy){
+                //jesli proces zdazyl sie zglosic ORAZ nie zostal jeszcze wykonany ORAZ nie jest jeszcze w kolejce
+                if (p.momentZgloszenia <= obecnyCzas && p.czyWykonany == false && !gotoweProcesy.contains(p)){
+                    gotoweProcesy.offer(p);
+                   // System.out.println("Dodano do gotowych proces numer "+p.nrPorzadkowy);
+                }
+            }
+
+            //wykonanie procesu
+            if (!gotoweProcesy.isEmpty()){
+                //pobieramy pierwszy proces z gotowych
+                Proces p = gotoweProcesy.poll();         
+                int trwanieFazy=0;
+                if(p.dlugoscFazy <= kwantCzasu){
+                    //jeśli dlFazy jest krótsza niż kwant, kończymy proces i 
+                    trwanieFazy=p.dlugoscFazy;
+                    p.dlugoscFazy = 0;
+                    p.czyWykonany = true;
+                    //System.out.println("Wykonano "+trwanieFazy+" procesu "+p.nrPorzadkowy);
+                } else {
+
+                    trwanieFazy=kwantCzasu;
+                    p.dlugoscFazy -=kwantCzasu;
+                    //System.out.println("Wykonano "+trwanieFazy+" procesu "+p.nrPorzadkowy);
+                    //gotoweProcesy.offer(p);
+                    //System.out.println("Dodano do gotowych proces numer "+p.nrPorzadkowy);
+                }
+                
+                
+                //nadajemy czas oczekiwania innym procesom
+                for (Proces proc : gotoweProcesy){
+                    if (proc.nrPorzadkowy != p.nrPorzadkowy)
+                    {
+                        proc.czasOczekiwania+=trwanieFazy;
+                    }
+                }
+                
+                //zwiekszamy obecny czas
+                obecnyCzas+=trwanieFazy;
+                
+
+            }//zamkniecie "jesli dodano proces"
+            else {
+            //jesli nie dodano procesu, bo zaden nie byl gotowy
+            //zwieksz czas o 1
+            obecnyCzas++;
+            }
+            
+            pozostalyNiewykonaneProcesy=false;
+            for (Proces p : procesy){
+                    if (p.czyWykonany == false){
+                       pozostalyNiewykonaneProcesy = true;
+                    }    
+            }   
+            
+        }//koniec while
+        System.out.println("Dla algorytmu RR: "+wyliczSredniCzas(procesy)); 
+        
+    }//koniec RR

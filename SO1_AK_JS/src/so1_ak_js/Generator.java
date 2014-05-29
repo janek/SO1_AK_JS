@@ -25,7 +25,6 @@ public class Generator {
     void scenariuszZPliku(String nazwa) throws FileNotFoundException{
         System.out.println("wczytywanie z "+nazwa);
         Scanner odczyt = new Scanner(new File(nazwa));
-        odczyt.nextLine();
         while(odczyt.hasNextLine()){
             String linia = odczyt.nextLine();
             String[] wartosci = linia.split(",");
@@ -42,7 +41,7 @@ public class Generator {
     
     /* tworzy nowy proces i dodaje do listy*/
     void dodajProces(int dlugoscFazy, int deltaZgloszenia){
-        procesy.add(new Proces(procesy.size(), dlugoscFazy, deltaZgloszenia));
+        procesy.add(new Proces(procesy.size()+1, dlugoscFazy, deltaZgloszenia));
     }
     
     /*generuje zadana ilosc procesow i dodaje do listy */

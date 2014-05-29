@@ -15,6 +15,9 @@ import java.util.Scanner;
  */
 public class SO1_AK_JS {
     
+    
+    
+    
     /**
      * @param args the command line arguments
      * @throws java.io.FileNotFoundException
@@ -37,26 +40,31 @@ public class SO1_AK_JS {
             Scanner scn = new Scanner(System.in);
 
             switch (scn.nextInt()) {
-            case 1:
-                   //mam procesy
+            case 1: 
                     int momentZgloszenia=0;
                     for (Proces p : procesy){
-                        p.wypisz();
-                        momentZgloszenia+=p.deltaZgloszenia;
-                        System.out.print(momentZgloszenia);
-                        System.out.println();
+                        p.wypisz();                      
                     }
+                    System.out.println("ilosc procesow = "+procesy.size());
                     startMenu(procesy);
                     break;
             case 2:
-                   Zasob zas = new Zasob();
-                   startMenu(zas.zPliku());
+                    Zasob zas = new Zasob();
+                    startMenu(zas.zPliku());
                     break;
 
-            
             case 3:
-                  
-                 //   startMenu();
+                    Zasob zas2 = new Zasob();   
+
+                    System.out.println("Podaj kwant czasu dla algorytmu rotacyjnego: ");
+                    //zas2.runAlgs(procesy, scn.nextInt());
+               
+                    zas2.RR(procesy, scn.nextInt());
+                    zas2.SJFW(procesy);
+                    zas2.SJF(procesy);
+                    zas2.FCFS(procesy);
+
+                    startMenu(procesy);
                     break;
             
             case 4:
