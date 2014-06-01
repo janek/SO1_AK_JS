@@ -26,7 +26,6 @@ public class Zasob {
     public ArrayList zPliku() throws FileNotFoundException {
         System.out.println("Podaj nazwę pliku tekstowego (razem z formatem), z którego chcesz wczytać listę procesów:");
         Scanner scn = new Scanner(System.in);
-        //String nazwa = scn.nextLine();
         genr.scenariuszZPliku(scn.nextLine());
         nadajMomentZgloszenia(genr.procesy);
         return genr.procesy;
